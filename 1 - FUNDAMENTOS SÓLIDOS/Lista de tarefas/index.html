@@ -1,24 +1,32 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-</head>
-<body>
-    
-    <section class="flex justify-center gap-4 py-4 flex-col">
-        <div>
-            <input class="border rounded " type="text" id="textInput" placeholder="What do I have to do?">
-            <button class="px-2 border rounded bg-gray-200 cursor-pointer hover:bg-gray-500" id="addTask">Add task</button>
-        </div>
-        
-        
-        <ul id="boxTask"></ul>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  </head>
+  <body class="bg-slate-500">
+    <section class="flex flex-col items-center gap-6 py-8">
+      <div class="flex w-full max-w-md gap-2">
+        <input
+          class="flex-1 px-4 py-2 bg-white border border-gray-300 rounded focus:outline-none focus:border-black"
+          type="text"
+          id="textInput"
+          placeholder="What do I have to do?"
+        />
 
+        <button
+          class="px-6 text-white transition-colors bg-gray-800 rounded hover:bg-black"
+          id="addTask"
+        >
+          Add
+        </button>
+      </div>
+
+      <ul id="boxTask" class="w-full max-w-md space-y-2"></ul>
     </section>
 
     <script src="index.js"></script>
-</body>
+  </body>
 </html>
