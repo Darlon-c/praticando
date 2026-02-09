@@ -5,7 +5,6 @@
 // 4. Some todos os números ímpares
 // Ao final, exiba os 4 resultados
 
-
 let cauntPair = 0
 let cauntOdd = 0
 let sumPair = 0
@@ -21,6 +20,7 @@ for(let i = 1; i <= 50; i++) {
         sumOdd += i
     }
 }
+
 console.log(`Quantidade de números pares: ${cauntPair}
             \nQuantidade de números ímpares: ${cauntOdd}
             \nA soma de todos os números pares: ${sumPair}
