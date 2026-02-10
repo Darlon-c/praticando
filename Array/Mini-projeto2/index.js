@@ -7,8 +7,6 @@ let noteTotal = 0;
 let approved = [];
 let reproved = [];
 
-
-
 for (let i = 0; i < notes.length; i++) {
   noteTotal += notes[i];
 
@@ -43,13 +41,13 @@ console.log(`A menor nota é: ${lowestGrade}`);
 console.log("================================");
 console.log(`Aprovados: ${approved}`);
 console.log(`Reprovados: ${reproved}`);
-console.log("================================")
-console.log(`Total de alunos: ${approved.length + reproved.length}`)
-console.log(`Total de alunos aprovados: ${approved.length}`)
-console.log(`Total de alunos reprovados: ${reproved.length}`)
+console.log("================================");
+console.log(`Total de alunos: ${approved.length + reproved.length}`);
+console.log(`Total de alunos aprovados: ${approved.length}`);
+console.log(`Total de alunos reprovados: ${reproved.length}`);
 
-if(mediaNote >= 7) {
-  console.log('Turma aprovada!')
+if (mediaNote >= 7) {
+  console.log("Turma aprovada!");
 } else {
-  console.log('Turma reprovada')
+  console.log("Turma reprovada");
 }
