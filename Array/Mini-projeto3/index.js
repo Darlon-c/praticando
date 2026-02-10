@@ -1,6 +1,6 @@
 // Sistema de Produtos e Descontos
 //Criar um programa que analise produtos, aplique descontos e gere um relatório final.
-//Este tipo de lógica é muito comum em e-commerce e sistemas reais.
+
 
 const products = [
   { name: "Teclado", price: 120 },
@@ -43,15 +43,14 @@ for (let j = 0; j < products.length; j++) {
 }
 
 console.log(`O valor total é: R$${valueTotal.toFixed(2)}`);
-
 console.log(
   `O produto mais barato é: ${lessExpensive.name} - ${lessExpensive.price.toFixed(2)}`,
 );
 console.log(
   `O produto mais caro é: ${moreExpensive.name} - ${moreExpensive.price.toFixed(2)}`,
 );
-
 console.log("Produtos com desconto:");
+
 for (let i = 0; i < discountedProducts.length; i++) {
   console.log(
     `${discountedProducts[i].name} - de R$${discountedProducts[i].originalPrice} por R$${discountedProducts[i].finalPrice.toFixed(2)}`
