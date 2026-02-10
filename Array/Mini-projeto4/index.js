@@ -38,7 +38,7 @@ calculate.addEventListener("click", function () {
     }
 
     if (highestValue < numbersArray[i]) {
-      highestValue += numbersArray[i];
+      highestValue = numbersArray[i];
     }
   }
 
