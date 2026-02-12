@@ -6,6 +6,8 @@ const productPriceInput = document.getElementById("productPrice");
 const addProductBtn = document.getElementById("addProduct");
 const showInfo = document.getElementById("showInfo");
 const report = document.getElementById("report");
+const removeProductNameInput = document.getElementById("removeProductName");
+const removeProductBtn = document.getElementById("removeProductBtn");
 
 let products = [];
 
@@ -28,6 +30,7 @@ addProductBtn.addEventListener("click", function () {
   };
 
   products.push(product);
+  renderProducts()
   productNameInput.value = "";
   productPriceInput.value = "";
   console.log(products);
@@ -60,7 +63,6 @@ report.addEventListener("click", function () {
       leastExpensiveProduct = products[i];
     }
   }
-
   showInfo.innerHTML = `
       Total de produtos: ${totalProducts} <br>
       Valor total do estoque: ${totalStockValue.toFixed(2)}R$ <br>
@@ -69,3 +71,48 @@ report.addEventListener("click", function () {
       Produtos acima de 100 reais: ${productsAbove100.join(", ")}
     `;
 });
+
+removeProductBtn.addEventListener("click", function () {
+  const nameToRemove = removeProductNameInput.value;
+
+  if (nameToRemove === "") {
+    alert("Informe o nome do produto para remover");
+    return;
+  }
+
+  let found = false;
+
+  for (let i = 0; i < products.length; i++) {
+    if (products[i].name === nameToRemove) {
+      products.splice(i, 1); // remove 1 item na posição i
+      found = true;
+      break;
+    }
+  }
+
+  if (found) {
+    alert("Produto removido com sucesso!");
+    
+  } else {
+    alert("Produto não encontrado!");
+  }
+
+  removeProductNameInput.value = "";
+  console.log(products);
+});
+
+function renderProducts() {
+
+  let html = "";
+
+  for (let i = 0; i < products.length; i++) {
+    html += `
+      <p>
+        ${products[i].name} - R$ ${products[i].price.toFixed(2)}
+      </p>
+    `;
+  }
+
+
+  showInfo.innerHTML = html;
+}
