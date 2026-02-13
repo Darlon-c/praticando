@@ -4,10 +4,11 @@
 const productNameInput = document.getElementById("productName");
 const productPriceInput = document.getElementById("productPrice");
 const addProductBtn = document.getElementById("addProduct");
-const showInfo = document.getElementById("showInfo");
 const report = document.getElementById("report");
 const removeProductNameInput = document.getElementById("removeProductName");
 const removeProductBtn = document.getElementById("removeProductBtn");
+const productList = document.getElementById("productList");
+const reportArea = document.getElementById("reportArea");
 
 let products = [];
 
@@ -30,7 +31,7 @@ addProductBtn.addEventListener("click", function () {
   };
 
   products.push(product);
-  renderProducts()
+  renderProducts();
   productNameInput.value = "";
   productPriceInput.value = "";
   console.log(products);
@@ -63,7 +64,7 @@ report.addEventListener("click", function () {
       leastExpensiveProduct = products[i];
     }
   }
-  showInfo.innerHTML = `
+  reportArea.innerHTML = `
       Total de produtos: ${totalProducts} <br>
       Valor total do estoque: ${totalStockValue.toFixed(2)}R$ <br>
       Produto mais caro: ${mostExpensiveProduct.name} - R$ ${mostExpensiveProduct.price.toFixed(2)} <br>
@@ -92,7 +93,7 @@ removeProductBtn.addEventListener("click", function () {
 
   if (found) {
     alert("Produto removido com sucesso!");
-    
+    renderProducts();
   } else {
     alert("Produto não encontrado!");
   }
@@ -102,6 +103,10 @@ removeProductBtn.addEventListener("click", function () {
 });
 
 function renderProducts() {
+  if (products.length === 0) {
+    productList.innerHTML = "Nenhum produto cadastrado.";
+    return;
+  }
 
   let html = "";
 
@@ -113,6 +118,5 @@ function renderProducts() {
     `;
   }
 
-
-  showInfo.innerHTML = html;
+  productList.innerHTML = html;
 }
