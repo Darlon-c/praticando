@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  </head>
+  <body>
+    <section>
+      <h2 class="flex justify-center py-5 font-semibold">Sistema de Carrinho</h2>
+
+      <div class="flex justify-center gap-2 it">
+        <input
+          type="text"
+          id="productName"
+          placeholder="Nome do produto"
+          class="px-2 text-center border rounded-lg"
+        />
+        <input
+          type="number"
+          id="productPrice"
+          placeholder="Preço"
+          class="px-2 text-center border rounded-lg"
+        />
+        <input
+          type="number"
+          id="productQuantity"
+          placeholder="Quantidade"
+          class="px-2 text-center border rounded-lg"
+        />
+        <button
+          id="addProduct"
+          class="px-2 py-2 bg-gray-200 rounded-xl hover:bg-gray-400 hover:font-semibold"
+        >
+          Adicionar
+        </button>
+      </div>
+
+      <div id="productList"></div>
+
+      <h3 id="totalValue"></h3>
+      <h3 id="mostExpensive"></h3>
+      <h3 id="cheapest"></h3>
+      <h3 id="totalItems"></h3>
+    </section>
+
+    <script src="index.js"></script>
+  </body>
+</html>
