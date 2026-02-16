@@ -12,19 +12,39 @@ const inventory = [
 ];
 
 let inventoryValue = 0;
-let price = 0
-let quantity = 0
+let greaterQuantity = inventory[0]
+let lowestQuantity = inventory[0]
+let newInventory = []
+let highestStockValueProduct = inventory[0];
+
 
 for (let i = 0; i < inventory.length; i++) {
-     price += inventory[i].price  
-    quantity +=inventory[i].quantity
+    // valor total
+    inventoryValue += inventory[i].price * inventory[i].quantity
+   // maior quantidade
+    if(inventory[i].quantity > greaterQuantity.quantity) {
+      greaterQuantity = inventory[i]
+    }
+    // menor quantidade
+     if(inventory[i].quantity < lowestQuantity.quantity) {
+      lowestQuantity = inventory[i]
+    }
+    
+    if(inventory[i].quantity < 10) {
+      newInventory.push(inventory[i].name)
+    }
 
-  
+    if(inventory[i].price * inventory[i].quantity > highestStockValueProduct.price * highestStockValueProduct.quantity) {
+        highestStockValueProduct = inventory[i]
+    }
 }
-console.log(price * quantity)
-console.log(inventoryValue);
 
+let mediaValue = inventoryValue / inventory.length
 
-
-
+console.log(`Valor total do estoque: R$${inventoryValue.toFixed(2)}`);
+console.log(`Produto com maior quantidade: ${greaterQuantity.name} - ${greaterQuantity.quantity}und`)
+console.log(`Produto com menor quantidade: ${lowestQuantity.name} - ${lowestQuantity.quantity}und`)
+console.log("Produtos com estoque menor do que 10 und:",newInventory)
+console.log(`A média de valores é: R$${mediaValue.toFixed(2)}`)
+console.log("Produto que mais gera valor: ",highestStockValueProduct)
 
