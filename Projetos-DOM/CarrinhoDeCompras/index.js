@@ -93,12 +93,18 @@ function renderCart() {
   // Frete gratis
 
   let shipping = 50
+  let freeShippingLimit = 800
+  let message = ""
 
-  if(totalValueCart > 800) {
+  if(totalValueCart >= freeShippingLimit) {
     shipping = 0
+    message = "Você ganhou Frete Grátis"
+  } else {
+    let remaining = freeShippingLimit - totalValueCart
+    message = `Faltam R$ ${remaining.toFixed(2)} para conseguir o frete grátis`
   }
 
-  finalValue = finalValue + shipping
+  finalValue = finalValue -  discount + shipping
 
   productList.innerHTML = html;
   totalItemsElement.innerHTML = `
@@ -106,6 +112,7 @@ function renderCart() {
     <p>Desconto: R$ ${discount.toFixed(2)}</p>
     <p>Frete: ${shipping === 0 ? "GRÁTIS" : "R$ " + shipping.toFixed(2)}</p>
     <p><strong>Total com desconto: R$ ${finalValue.toFixed(2)}</strong></p>
+    <p class="text-blue-600 font-semibold">${message}</p>
   `;
   mostExpensiveElement.innerHTML = `<p>Mais caro: ${mostExpensive.name}</p>`;
   cheapestElement.innerHTML = `<p>Mais barato: ${cheapest.name}</p>`;
