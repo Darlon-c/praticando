@@ -8,9 +8,11 @@
   </head>
   <body>
     <section>
-      <h2 class="flex justify-center py-5 font-semibold">Sistema de Carrinho</h2>
+      <h2 class="flex justify-center py-5 font-semibold">
+        Sistema de Carrinho
+      </h2>
 
-      <div class="flex justify-center gap-2 it">
+      <div class="flex justify-center gap-2 py-4">
         <input
           type="text"
           id="productName"
@@ -35,12 +37,17 @@
         >
           Adicionar
         </button>
+        <button
+          id="clearCart"
+          class="px-2 py-2 bg-red-200 rounded-xl hover:bg-red-400 hover:font-semibold"
+        >
+          Limpar Carrinho
+        </button>
       </div>
 
       <div id="productList"></div>
 
-      <h3 id="totalValue"></h3>
-      <h3 id="mostExpensive"></h3>
+      <h3 id="mostExpensive" ></h3>
       <h3 id="cheapest"></h3>
       <h3 id="totalItems"></h3>
     </section>
