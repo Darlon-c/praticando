@@ -92,19 +92,19 @@ function renderCart() {
 
   // Frete gratis
 
-  let shipping = 50
-  let freeShippingLimit = 800
-  let message = ""
+  let shipping = 50;
+  let freeShippingLimit = 800;
+  let message = "";
 
-  if(totalValueCart >= freeShippingLimit) {
-    shipping = 0
-    message = "Você ganhou Frete Grátis"
+  if (totalValueCart >= freeShippingLimit) {
+    shipping = 0;
+    message = "Você ganhou Frete Grátis";
   } else {
-    let remaining = freeShippingLimit - totalValueCart
-    message = `Faltam R$ ${remaining.toFixed(2)} para conseguir o frete grátis`
+    let remaining = freeShippingLimit - totalValueCart;
+    message = `Faltam R$ ${remaining.toFixed(2)} para conseguir o frete grátis`;
   }
 
-  finalValue = finalValue -  discount + shipping
+  finalValue = finalValue - discount + shipping;
 
   productList.innerHTML = html;
   totalItemsElement.innerHTML = `

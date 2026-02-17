@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  </head>
+  <body>
+    <section class="">
+      <h2 class="flex justify-center py-4">Sistema de Biblioteca</h2>
+      <div class="flex justify-center gap-5">
+        <input
+          class="px-2 text-center border rounded-lg"
+          type="text"
+          id="title"
+          placeholder="Título"
+        />
+        <input
+          class="px-2 text-center border rounded-lg"
+          type="text"
+          id="author"
+          placeholder="Autor"
+        />
+        <input
+          class="px-2 text-center border rounded-lg"
+          type="number"
+          id="year"
+          placeholder="Ano"
+        />
+        <button
+          id="addBook"
+          class="px-2 py-2 bg-gray-200 rounded-xl hover:bg-gray-400 hover:font-semibold"
+        >
+          Adicionar Livro
+        </button>
+
+        <button
+          id="showStats"
+          class="px-2 py-2 bg-gray-200 rounded-xl hover:bg-gray-400 hover:font-semibold"
+        >
+          Mostrar Estatísticas
+        </button>
+      </div>
+
+      <div id="bookList"></div>
+      <div id="stats"></div>
+    </section>
+
+    <script src="index.js"></script>
+  </body>
+</html>
