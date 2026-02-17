@@ -4,7 +4,6 @@ const yearInput = document.getElementById("year");
 const addBookBtn = document.getElementById("addBook");
 const bookList = document.getElementById("bookList");
 const stats = document.getElementById("stats");
-const showStats = document.getElementById("showStats");
 
 let books = [];
 let idCounter = 1;
@@ -47,42 +46,61 @@ function showBooks() {
   let html = "";
 
   for (let i = 0; i < books.length; i++) {
+    
     html += `
-        <p>
-           Nome: ${books[i].title}  <br>
-           Autor: ${books[i].author} - (${books[i].year}) <br>
-           Status: ${books[i].available ? "Disponível" : "Emprestado"} <br>
-            <button
-                onclick="borrowBook(${books[i].id})"
-                class="px-1 py-1 bg-gray-200 rounded-xl hover:bg-gray-400 hover:font-semibold"
-                >
-                ${books[i].available ? "Emprestar" : "Devolver"}
-            </button>
-            <button
-                onclick="removeBook(${books[i].id})"
-                class="px-1 py-1 bg-gray-200 rounded-xl hover:bg-gray-400 hover:font-semibold"
-                >
-                Remover
-            </button>
+  <div class="p-3 bg-white rounded-xl shadow border text-sm">
+    
+    <h3 class="font-semibold truncate">
+      ${books[i].title}
+    </h3>
 
-        </p>
-    `;
+    <p class="text-gray-500 truncate">
+      ${books[i].author}
+    </p>
+
+    <p class="text-xs text-gray-400">
+      ${books[i].year}
+    </p>
+
+    <p class="mt-1 font-medium ${
+      books[i].available ? "text-green-600" : "text-red-600"
+    }">
+      ${books[i].available ? "Disponível" : "Emprestado"}
+    </p>
+
+    <div class="mt-2 flex gap-1">
+      <button
+        onclick="borrowBook(${books[i].id})"
+        class="flex-1 text-xs py-1 rounded bg-blue-500 text-white hover:bg-blue-600"
+      >
+        ${books[i].available ? "Emprestar" : "Devolver"}
+      </button>
+
+      <button
+        onclick="removeBook(${books[i].id})"
+        class="flex-1 text-xs py-1 rounded bg-red-500 text-white hover:bg-red-600"
+      >
+        X
+      </button>
+    </div>
+  </div>
+`;
   }
 
   bookList.innerHTML = html;
+  updateStats();
 }
 
 // mostrar estatísticas
-
-showStats.addEventListener("click", function () {
-  let total = books.length;
-  let availableCount = 0;
-  let borrowedCount = 0;
-
+function updateStats() {
   if (books.length === 0) {
     stats.innerHTML = "Nenhum livro cadastrado!";
     return;
   }
+
+  let total = books.length;
+  let availableCount = 0;
+  let borrowedCount = 0;
 
   for (let i = 0; i < books.length; i++) {
     if (books[i].available) {
@@ -90,14 +108,15 @@ showStats.addEventListener("click", function () {
     } else {
       borrowedCount++;
     }
-
-    stats.innerHTML = `
-        <p>Total de livros: ${total}</p>
-        <p>Disponíveis: ${availableCount}</p>
-        <p>Emprestados: ${borrowedCount}</p>
-    `;
   }
-});
+  stats.innerHTML = `
+    <div class="mt-4 p-4 bg-gray-100 rounded-xl shadow">
+      <p><strong>Total:</strong> ${total}</p>
+      <p class="text-green-600"><strong>Disponíveis:</strong> ${availableCount}</p>
+      <p class="text-red-600"><strong>Emprestados:</strong> ${borrowedCount}</p>
+    </div>
+  `;
+}
 
 // mudar de disponivel para emprestado e de emprestado para disponivel
 function borrowBook(id) {
