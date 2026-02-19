@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  </head>
+  <body class="bg-gray-100">
+    <section class="flex flex-col items-center gap-6 py-8">
+      <div class="flex w-full max-w-md gap-2">
+        <input
+          class="flex-1 px-4 py-2 bg-white border border-gray-300 rounded focus:outline-none focus:border-black"
+          type="text"
+          id="textInput"
+          placeholder="O que vamos comprar hoje?"
+        />
+
+        <button
+          class="px-6 text-white transition-colors bg-gray-800 rounded hover:bg-black"
+          id="addPurchase"
+        >
+          Adicionar
+        </button>
+      </div>
+
+      <ul id="shoppingBasket" class="w-full max-w-md space-y-2"></ul>
+    </section>
+
+    <script src="index.js"></script>
+  </body>
+</html>
