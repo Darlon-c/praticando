@@ -3,10 +3,7 @@
 const numbers = [3, 8, 15, 22, 7, 14, 21, 2, 32, 9, 5, 4, 12];
 
 const multi = numbers
-  .filter((num) => num > 10).map(num => num * 3).reduce((acc, guard) => {
-    acc.push(guard)
-    return acc
-  }, [])
+  .filter((num) => num > 10).map(num => num * 3)
  
 
 console.log(multi);
