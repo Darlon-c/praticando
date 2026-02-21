@@ -4,6 +4,8 @@
 const numbers = document.getElementById("numbers");
 const submitBtn = document.getElementById("submitBtn");
 const separate = document.getElementById("separate");
+const pairNumbers = document.getElementById("pairNumbers");
+const oddNumbers = document.getElementById("oddNumbers");
 
 let totalNumbers = [];
 
@@ -27,6 +29,6 @@ separate.addEventListener("click", function () {
     }
   }
 
-  console.log(`Números pares: ${pair}`);
-  console.log(`Números ímpares: ${odd}`);
+  pairNumbers.innerHTML = `Números pares: ${pair}`;
+  oddNumbers.innerHTML = `Números ímpares: ${odd}`;
 });
