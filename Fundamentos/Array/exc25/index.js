@@ -9,8 +9,6 @@ const products = [
 
 const expensiveProduct = products
   .filter((product) => product.inStock)
-  .reduce((acc, product) => {
-    return acc.price > product.price ? acc : product
-  },0);
+  .reduce((acc, product) => acc.price > product.price ? acc : product);
 
 console.log(expensiveProduct.name);

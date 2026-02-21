@@ -40,7 +40,7 @@ showNotes.addEventListener("click", function () {
     }
   }
 
-  let mediaFinal = sum / allNotes.length
+  let mediaFinal = sum / allNotes.length;
 
   media.innerText = `Média: ${mediaFinal.toFixed(2)}`;
   showApproved.innerText = `Aprovados: ${approved}`;
