@@ -10,8 +10,8 @@ const products = [
 ];
 
 const productInStock = products
-  .filter(product => product.inStock)
-  .map(product => product.price)
+  .filter((product) => product.inStock)
+  .map((product) => product.price)
   .reduce((acc, price) => acc + price, 0);
 
 console.log(productInStock);
