@@ -9,17 +9,28 @@ const users = [
   { name: "Ana", age: 16 },
 ];
 
-const older = users.filter((newAge) => {
-  return newAge.age >= 18;
-});
+// const older = users.filter((newAge) => {
+//   return newAge.age >= 18;
+// });
 
-const newNames = older.reduce((accumulator, person) => {
-  accumulator.push(person.name);
-  return accumulator;
-}, []);
+// const newNames = older.reduce((accumulator, person) => {
+//   accumulator.push(person.name);
+//   return accumulator;
+// }, []);
+// const namesToUppercase = newNames.map((name) => {
+//   return name.toUpperCase();
+// });
+// console.log(namesToUppercase);
 
-const namesToUppercase = newNames.map((name) => {
-  return name.toUpperCase();
-});
 
-console.log(namesToUppercase);
+
+// depois de pesquisar um pouco descobri que da para encadear tudo, segue refatoração
+
+const result = users
+  .filter((user) => user.age >= 18)
+  .map((user) => user.name)
+  .map((name) => name.toUpperCase());
+
+console.log(result);
+
+
