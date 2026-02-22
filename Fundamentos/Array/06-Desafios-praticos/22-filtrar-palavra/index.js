@@ -2,7 +2,8 @@
 
 const words = ["banana", "maçã", "abacaxi", "uva", "laranja"];
 
-const fruits = words.filter(names => names.length > 5).map(fruit => fruit.toUpperCase())
+const fruits = words
+  .filter((names) => names.length > 5)
+  .map((fruit) => fruit.toUpperCase());
 
-console.log(fruits)
-
+console.log(fruits);
