@@ -3,6 +3,8 @@
 
 const numbers = [10, 15, 20, 25, 30, 35];
 
-const multi = numbers.filter((number) => number % 5 === 0 && number > 20);
+const result = numbers
+  .filter((number) => number % 5 === 0 && number > 20)
+  .reduce((acc, number) => acc + number, 0);
 
-console.log(multi);
+console.log(result);
