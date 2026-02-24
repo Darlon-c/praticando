@@ -20,15 +20,25 @@ function addProduct() {
     return;
   }
 
-  const product = {
-    id: idCount,
-    nome: inputText.value.trim(),
-    price: Number(price.value),
-    quantity: Number(quantity.value),
-  };
+  const existingProduct = products.find(
+    (product) =>
+      product.name.trim().toLowerCase() ===
+      inputText.value.trim().toLowerCase(),
+  );
 
-  products.push(product);
-  idCount++;
+  if (existingProduct) {
+    existingProduct.quantity += Number(quantity.value);
+  } else {
+    const product = {
+      id: idCount,
+      name: inputText.value.trim(),
+      price: Number(price.value),
+      quantity: Number(quantity.value),
+    };
+    products.push(product);
+    idCount++;
+  }
+
   inputText.value = "";
   price.value = "";
   quantity.value = "";
@@ -39,7 +49,8 @@ function addProduct() {
 
 function renderProducts() {
   const listProducts = products.map((product) => {
-    return `<div>${product.id} | ${product.nome} | R$${product.price.toFixed(2)} | ${product.quantity}<button onclick="removeProduct(${product.id})">Remover</button></div>`;
+    return `<div>${product.id} | ${product.name} | R$${product.price.toFixed(2)} | ${product.quantity}
+    <button onclick="removeProduct(${product.id})">Remover</button></div>`;
   });
 
   result.innerHTML = listProducts.join("");
@@ -58,8 +69,8 @@ function removeProduct(id) {
     return product.id !== id;
   });
 
-  renderProducts()
-  calculateTotal()
+  renderProducts();
+  calculateTotal();
 }
 
 btnAdd.addEventListener("click", addProduct);
