@@ -1,8 +1,9 @@
 const list = document.getElementById("list");
 const toSchedule = document.getElementById("toSchedule");
 
-let appointments = [];
-let idCount = 1;
+let appointments = JSON.parse(localStorage.getItem("testdrive_data")) || [];
+let idCount =
+  appointments.length > 0 ? Math.max(...appointments.map((a) => a.id)) + 1 : 1;
 
 function newSchedule() {
   const textInput = document.getElementById("textName");
@@ -16,14 +17,14 @@ function newSchedule() {
   const car = carInput.value;
 
   if (!name || !hour || !date) {
-    alert("Por favor, preencha todos os campos!");
+    Swal.fire("Por favor, preencha todos os campos!");
     return;
   }
 
   const now = new Date();
   const selectedDate = new Date(date + "T" + hour);
   if (selectedDate < now) {
-    alert("Não pode agendar para o passado!");
+    Swal.fire("Não pode agendar para o passado!");
     return;
   }
 
@@ -32,7 +33,7 @@ function newSchedule() {
   );
 
   if (conflict) {
-    alert("Esse carro já está reservado nesse horário!");
+    Swal.fire("Esse carro já está reservado nesse horário!");
     return;
   }
 
@@ -47,8 +48,7 @@ function newSchedule() {
 
   appointments.push(scheduling);
   idCount++;
-  renderSchedule();
-  console.log(appointments);
+  saveAndRender();
 
   textInput.value = "";
   hourInput.value = "";
@@ -61,46 +61,63 @@ function renderSchedule() {
   });
 
   const showAppointments = appointments.map((scheduling) => {
-    const bgColor = scheduling.finish ? "bg-green-200" : "bg-white";
-    const formattedDate = new Date(scheduling.date).toLocaleDateString("pt-BR");
+    const statusClass = scheduling.finish
+      ? "bg-emerald-50 border-emerald-200 opacity-75"
+      : "bg-white border-slate-100 shadow-sm";
+    const btnStatusClass = scheduling.finish
+      ? "bg-emerald-500 text-white"
+      : "bg-slate-100 text-slate-600";
+    const formattedDate = new Date(scheduling.date).toLocaleDateString(
+      "pt-BR",
+      { timeZone: "UTC" },
+    );
 
-    return `<div class="border px-5 py-5 rounded-lg">
-    <p class="font-semibold">Carro: ${scheduling.car}</p>
-    <p class="font-semibold">Cliente: ${scheduling.name}</p> 
-    <p class="font-semibold">Data: ${formattedDate}</p>
-    <p class="font-semibold">Horario: ${scheduling.hour}</p>
-    <button onclick="testDone(${scheduling.id})" class="px-3 border ${bgColor} rounded-md hover:bg-slate-100">Teste feito</button>
-    <button onclick="removeAppointments(${scheduling.id})" class="px-3 border rounded-md text-red-400 hover:bg-red-600 hover:text-black">X</button>
+    return `
+    <div class="border-2 p-5 rounded-2xl transition-all relative ${statusClass}">
+        <button onclick="removeAppointments(${scheduling.id})" class="absolute top-4 right-4 text-slate-300 hover:text-red-500 transition-colors">
+            ✕
+        </button>
+        
+        <div class="mb-4">
+            <span class="text-[10px] font-bold text-cyan-600 uppercase tracking-widest">Veículo</span>
+            <h3 class="font-bold text-lg text-slate-800">${scheduling.car}</h3>
+        </div>
+
+        <div class="space-y-2 mb-6">
+            <p class="text-sm flex items-center gap-2"><span class="text-slate-400">👤</span> <b>Cliente:</b> ${scheduling.name}</p>
+            <p class="text-sm flex items-center gap-2"><span class="text-slate-400">📅</span> <b>Data:</b> ${formattedDate}</p>
+            <p class="text-sm flex items-center gap-2"><span class="text-slate-400">⏰</span> <b>Horário:</b> ${scheduling.hour}</p>
+        </div>
+
+        <button onclick="testDone(${scheduling.id})" 
+            class="w-full py-2 rounded-xl font-bold text-xs uppercase tracking-tighter transition-all hover:brightness-95 ${btnStatusClass}">
+            ${scheduling.finish ? "✓ Teste Realizado" : "Marcar como feito"}
+        </button>
     </div>`;
   });
 
   list.innerHTML = showAppointments.join("");
 }
 
-function removeAppointments(id) {
-  appointments = appointments.filter((scheduling) => {
-    return scheduling.id !== id;
-  });
-
+function saveAndRender() {
+  localStorage.setItem("testdrive_data", JSON.stringify(appointments));
   renderSchedule();
-  alert("Agendamento removido");
+}
+
+function removeAppointments(id) {
+  appointments = appointments.filter((item) => item.id !== id);
+  saveAndRender();
+  Swal.fire("Agendamento removido!");
 }
 
 function testDone(id) {
-  // Encontra o agendamento pelo ID
-  const schedulings = appointments.find((item) => item.id === id);
-
-  if (schedulings) {
-    schedulings.finish = !schedulings.finish;
-
-    if (schedulings.finish) {
-      alert(`Agendamento #${id} marcado como concluído!`);
-    } else {
-      alert(`Agendamento #${id} reaberto!`);
-    }
+  const scheduling = appointments.find((item) => item.id === id);
+  if (scheduling) {
+    scheduling.finish = !scheduling.finish;
   }
-
-  renderSchedule();
+  saveAndRender();
 }
 
 toSchedule.addEventListener("click", newSchedule);
+
+renderSchedule();
