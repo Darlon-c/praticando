@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  </head>
+  <body class="bg-gray-400">
+    <section >
+      <div class="flex justify-center gap-6 py-7">
+        <input
+          class="px-3 border rounded-md"
+          type="text"
+          placeholder="Informe seu nome"
+          id="textName"
+        />
+        <input class="px-3 border rounded-md" type="date" id="inputDate" />
+        <input
+          class="px-3 border rounded-md"
+          type="time"
+          id="hour"
+          placeholder="Informe a hora"
+        />
+        <button
+          id="toSchedule"
+          class="px-3 border rounded-md hover:bg-slate-100"
+        >
+          Agendar
+        </button>
+      </div>
+    </section>
+
+    <h2>Agendamentos</h2>
+    <div id="list"></div>
+
+    <script src="index.js"></script>
+  </body>
+</html>
