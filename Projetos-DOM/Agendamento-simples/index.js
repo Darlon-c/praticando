@@ -20,6 +20,13 @@ function newSchedule() {
     return;
   }
 
+  const now = new Date();
+  const selectedDate = new Date(date + "T" + hour);
+  if (selectedDate < now) {
+    alert("Não pode agendar para o passado!");
+    return;
+  }
+
   const scheduling = {
     id: idCount,
     car: car,
@@ -43,12 +50,12 @@ function renderSchedule() {
   const showAppointments = appointments.map((scheduling) => {
     const bgColor = scheduling.finish ? "bg-green-200" : "bg-white";
 
-    return `<div class="border px-5 py-5 ">
-    <p>Carro: ${scheduling.car}</p><br>
-    <p>Cliente: ${scheduling.name}</p><br>  
-    <p>Data: ${scheduling.date}</p><br>  
-    <p>Horario: ${scheduling.hour}</p>
-    <button onclick="testDone(${scheduling.id})" class="px-3 border ${bgColor} rounded-md hover:bg-slate-100">Test feito</button>
+    return `<div class="border px-5 py-5 rounded-lg">
+    <p class="font-semibold">Carro: ${scheduling.car}</p>
+    <p class="font-semibold">Cliente: ${scheduling.name}</p> 
+    <p class="font-semibold">Data: ${scheduling.date}</p>
+    <p class="font-semibold">Horario: ${scheduling.hour}</p>
+    <button onclick="testDone(${scheduling.id})" class="px-3 border ${bgColor} rounded-md hover:bg-slate-100">Teste feito</button>
     <button onclick="removeAppointments(${scheduling.id})" class="px-3 border rounded-md hover:bg-red-500">X</button>
     </div>`;
   });
