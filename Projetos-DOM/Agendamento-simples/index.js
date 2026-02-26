@@ -37,7 +37,8 @@ function newSchedule() {
 
 function renderSchedule() {
   const showAppointments = appointments.map((scheduling) => {
-    return `<div>${scheduling.name} - ${scheduling.date} - ${scheduling.hour}</div>`;
+    return `<div class="border px-5 py-5"><p>Cliente: ${scheduling.name}</p><br>  <p>Data: ${scheduling.date}</p><br>  
+    <p>Horario: ${scheduling.hour}</p></div>`;
   });
 
   list.innerHTML = showAppointments.join("");

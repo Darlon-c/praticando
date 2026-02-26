@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="pt-br">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -9,13 +9,20 @@
   <body class="bg-gray-200">
     <section>
       <h1 class="flex justify-center py-5 text-2xl font-semibold">
-        Controle de Agendamentos
+        Controle de Agendamentos Test Drive
       </h1>
       <div class="flex justify-center gap-6 py-16">
+        <select id="" class="border rounded-md">
+          <option value="1">Porshe 911</option>
+          <option value="2">Audi A3</option>
+          <option value="3">BMW</option>
+          <option value="4">Lamborghini</option>
+        </select>
+
         <input
           class="px-8 py-2 text-center border rounded-md"
           type="text"
-          placeholder="Informe o nome"
+          placeholder="Nome do cliente"
           id="textName"
         />
         <input class="px-5 border rounded-md" type="date" id="inputDate" />
@@ -33,11 +40,12 @@
         </button>
       </div>
 
-      <h2 class="flex justify-center py-5 text-2xl font-semibold">Agendamentos</h2>
+      <h2 class="flex justify-center py-5 text-2xl font-semibold">
+        Agendamentos
+      </h2>
 
       <div class="flex justify-center">
-        
-        <div id="list"></div>
+        <div id="list" class="grid grid-cols-4 gap-8"></div>
       </div>
     </section>
 
