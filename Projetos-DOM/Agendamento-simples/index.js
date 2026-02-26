@@ -56,6 +56,10 @@ function newSchedule() {
 }
 
 function renderSchedule() {
+  appointments.sort((a, b) => {
+    return new Date(a.date + "T" + a.hour) - new Date(b.date + "T" + b.hour);
+  });
+
   const showAppointments = appointments.map((scheduling) => {
     const bgColor = scheduling.finish ? "bg-green-200" : "bg-white";
     const formattedDate = new Date(scheduling.date).toLocaleDateString("pt-BR");
@@ -66,7 +70,7 @@ function renderSchedule() {
     <p class="font-semibold">Data: ${formattedDate}</p>
     <p class="font-semibold">Horario: ${scheduling.hour}</p>
     <button onclick="testDone(${scheduling.id})" class="px-3 border ${bgColor} rounded-md hover:bg-slate-100">Teste feito</button>
-    <button onclick="removeAppointments(${scheduling.id})" class="px-3 border rounded-md hover:bg-red-500">X</button>
+    <button onclick="removeAppointments(${scheduling.id})" class="px-3 border rounded-md text-red-400 hover:bg-red-600 hover:text-black">X</button>
     </div>`;
   });
 
