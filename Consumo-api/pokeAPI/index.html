@@ -2,12 +2,19 @@
 <html lang="pt-br">
   <head>
     <meta charset="UTF-8" />
-    <title>Loja com API</title>
+    <title>Pokemons com API</title>
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
   </head>
   <body>
-    
+    <section>
+      <div class="flex justify-center gap-6 py-6">
+        <input class="text-center border rounded-lg " type="text" id="pokeInput" placeholder="Encontre o pokemon" />
+        <button class="px-4 py-2 font-mono bg-indigo-400 border rounded-md cursor-pointer hover:bg-indigo-800" id="searchPoke">Procurar</button>
+      </div>
 
-    <script src="script.js"></script>
+      <div class="flex justify-center" id="pokemons"></div>
+    </section>
+
+    <script src="index.js"></script>
   </body>
 </html>
