@@ -23,8 +23,8 @@ function createProduct() {
   const product = {
     id: idCount,
     name: productName.value,
-    price: productPrice.value,
-    quantity: productQuantity.value,
+    price: Number(productPrice.value),
+    quantity: Number(productQuantity.value),
   };
 
   listProducts.push(product);
@@ -47,6 +47,9 @@ function renderProducts() {
                     Quantidade: ${product.quantity} | 
                     Valor total: R$ ${product.price * product.quantity} 
                 </p>
+
+                <button onclick="editPrice(${product.id})">Editar Preço</button>
+                <button onclick="updateQuantity(${product.id})">Atualizar Qtd</button>
                 <button onclick="removeProduct(${product.id})">Remover</button>
             </div>
         `;
@@ -54,6 +57,34 @@ function renderProducts() {
 
   result.innerHTML = shelf.join("");
   showTotalValue();
+}
+
+function editPrice(id) {
+  const product = listProducts.find((p) => p.id === id);
+
+  if (!product) return;
+
+  const newPrice = prompt("Novo preço:");
+
+  if (newPrice === null || newPrice === "") return;
+
+  product.price = Number(newPrice);
+
+  renderProducts();
+}
+
+function updateQuantity(id) {
+  const product = listProducts.find((p) => p.id === id);
+
+  if (!product) return;
+
+  const newQuantity = prompt("Nova quantidade:");
+
+  if (newQuantity === null || newQuantity === "") return;
+
+  product.quantity = Number(newQuantity);
+
+  renderProducts();
 }
 
 function removeProduct(id) {
