@@ -4,7 +4,6 @@ const registerStudent = document.getElementById("registerStudent");
 const result = document.getElementById("result");
 const totalStudent = document.getElementById("totalStudent");
 
-
 let listOfStudents = [];
 let registration = 1;
 
@@ -42,7 +41,7 @@ function renderStudents() {
   });
 
   result.innerHTML = showStudents.join("");
-  totalStudent.innerHTML = `Total de alunos: ${listOfStudents.length}`
+  totalStudent.innerHTML = `Total de alunos: ${listOfStudents.length}`;
 }
 
 function removeStudent(id) {
@@ -51,12 +50,11 @@ function removeStudent(id) {
   });
 
   renderStudents();
-  totalStudent.innerHTML = totalStudents
+  totalStudent.innerHTML = totalStudents;
 }
 
- const totalStudents = listOfStudents.reduce((acc, students) =>{
-      return acc + students
-},0)
-
+const totalStudents = listOfStudents.reduce((acc, students) => {
+  return acc + students;
+}, 0);
 
 registerStudent.addEventListener("click", addStudent);
