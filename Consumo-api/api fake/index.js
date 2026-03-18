@@ -37,12 +37,13 @@ function renderProduct() {
     div.innerHTML = `
         <div class="flex justify-between items-center border-b py-2">
             <span class="font-semibold">${item.nome}</span>
-            <div class="flex items-center gap-2">
+            <div class="flex justify-between items-center gap-2">
                 <span>R$ ${item.preco}</span>
                 <span class="bg-gray-200 px-2 py-1 rounded">x${item.quantity}</span>
                 <span class="font-bold">
                 R$ ${(item.preco * item.quantity).toFixed(2)}
                 </span>
+                <button class="bg-red-700 cursor-pointer" onclick="removeProduct(${item.id})">X</button>
             </div>
         </div>
         `;
@@ -63,6 +64,15 @@ function buyProduct(id) {
 
   renderProduct();
   cartValue();
+}
+
+function removeProduct(id) {
+    cart = cart.filter((product) => {
+        return product.id !== id
+    })
+
+renderProduct()
+cartValue()
 }
 
 //calcula o valor total do carrinho
