@@ -15,6 +15,11 @@ async function getCep() {
     const response = await fetch(`https://brasilapi.com.br/api/cep/v1/${cep}`);
     const data = await response.json();
 
+    if (!response.ok) {
+      result.innerHTML = `<p class="text-red-500">CEP não encontrado!</p>`;
+      return;
+    }
+    
     result.innerHTML = `
     <div> 
         <h3>Cep: ${data.cep}</h3>
@@ -28,6 +33,7 @@ async function getCep() {
     end.value = "";
   } catch (error) {
     console.log(error);
+    result.innerHTML = `<p class="text-red-500">Erro na busca. Tente novamente.</p>`;
   }
 }
 
