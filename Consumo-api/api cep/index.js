@@ -1,7 +1,7 @@
 const result = document.getElementById("result");
 const end = document.getElementById("end");
 const btn = document.getElementById("seachr");
-const span = document.getElementById('span')
+const span = document.getElementById("span");
 
 async function getCep() {
   const cep = end.value;
@@ -11,10 +11,11 @@ async function getCep() {
     return;
   }
 
-  const response = await fetch(`https://brasilapi.com.br/api/cep/v1/${cep}`);
-  const data = await response.json();
+  try {
+    const response = await fetch(`https://brasilapi.com.br/api/cep/v1/${cep}`);
+    const data = await response.json();
 
-  result.innerHTML = `
+    result.innerHTML = `
     <div> 
         <h3>Cep: ${data.cep}</h3>
         <h3>Rua: ${data.street}</h3>
@@ -24,8 +25,10 @@ async function getCep() {
     </div>     
   `;
 
-  span.innerHTML = data.street
-  end.value =''
+    end.value = "";
+  } catch (error) {
+    console.log(error);
+  }
 }
 
 btn.addEventListener("click", getCep);
