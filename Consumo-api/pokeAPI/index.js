@@ -2,6 +2,9 @@ const poke = document.getElementById("pokemons");
 const pokeInput = document.getElementById("pokeInput");
 const searchPoke = document.getElementById("searchPoke");
 
+let favoritePokemons = []
+
+
 async function getPokemon() {
   const name = pokeInput.value.toLowerCase();
 
@@ -21,8 +24,17 @@ async function getPokemon() {
         <h2 class=""><strong>Nome:</strong> <span class="font-mono text-indigo-600">${data.name}</span></h2>
         <img src="${data.sprites.front_default}">
         <p><strong>Tipo:</strong> <span class="font-mono text-indigo-600">${types}</span></p>
+        <div>
+          <p>
+            Altura: ${data.height / 10}
+          </p>
+          <p>
+            Altura: ${data.weigth / 10}
+          </p>
+        </div>
     </div>
     `;
+    console.log(data)
   } catch (err) {
     console.log(err);
   }
