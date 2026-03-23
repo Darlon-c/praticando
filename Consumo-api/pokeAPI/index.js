@@ -7,6 +7,14 @@ const renderFavorites = document.getElementById("renderFavorites");
 let favoritePokemons = [];
 let currentPokemon = null;
 
+function loadStorage() {
+  const saveData = localStorage.getItem("pokemon");
+
+  if (saveData) {
+    favoritePokemons = JSON.parse(saveData);
+  }
+}
+
 async function getPokemon() {
   const name = pokeInput.value.toLowerCase();
 
@@ -32,6 +40,7 @@ async function getPokemon() {
     </div>
     `;
     console.log(data);
+    saveStorage();
   } catch (err) {
     console.log(err);
   }
@@ -48,22 +57,27 @@ function showFavorites() {
   });
 
   renderFavorites.innerHTML = render.join("");
+  saveStorage()
 }
 
 function addFavorites() {
-  favoritePokemons.push(currentPokemon);
+  const exists = favoritePokemons.some((p) => p.id === currentPokemon.id);
+
+  if (!exists) {
+    favoritePokemons.push(currentPokemon);
+    saveStorage();
+  } else {
+    alert(`${currentPokemon.name} já está favoritado`);
+  }
 
   console.log(favoritePokemons);
 }
 
+function saveStorage() {
+  localStorage.setItem("pokemon", JSON.stringify(favoritePokemons));
+}
+
+loadStorage();
 pokeInput.addEventListener("keydown", (e) => {});
 searchPoke.addEventListener("click", getPokemon);
 btnFavorites.addEventListener("click", showFavorites);
-// <div>
-//           <p>
-//             Altura: ${data.height / 10}
-//           </p>
-//           <p>
-//             Altura: ${data.weigth / 10}
-//           </p>
-//         </div>
