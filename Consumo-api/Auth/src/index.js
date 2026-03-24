@@ -6,6 +6,7 @@ const btnRegister = document.getElementById("btnRegister");
 const emailLogin = document.getElementById("emailLogin");
 const passwordLogin = document.getElementById("passwordLogin");
 const btnLogin = document.getElementById("btnLogin");
+const logoutBtn = document.getElementById("logoutBtn");
 
 let users = [];
 let idCount = 1;
@@ -124,7 +125,18 @@ function logout() {
   window.location.href = "login.html";
 }
 
-const logoutBtn = document.getElementById("logoutBtn");
+function checkLogin() {
+  const userLogin = localStorage.getItem("userLogin");
+
+  const currentPage = window.location.pathname;
+
+  if (currentPage.includes("login.html")) return;
+
+  if (!userLogin) {
+    window.location.href = "login.html";
+  }
+}
+
 if (logoutBtn) {
   logoutBtn.addEventListener("click", logout);
 }
@@ -136,3 +148,5 @@ if (btnRegister) {
 if (btnLogin) {
   btnLogin.addEventListener("click", loginUser);
 }
+showUserName();
+checkLogin();
