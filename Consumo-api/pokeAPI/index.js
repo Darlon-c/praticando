@@ -41,6 +41,7 @@ async function getPokemon() {
     `;
     console.log(data);
     saveStorage();
+    pokeInput.value = ''
   } catch (err) {
     console.log(err);
   }
@@ -75,9 +76,13 @@ function addFavorites() {
 }
 
 function removeFavorites(id) {
-  
-}
+  favoritePokemons = favoritePokemons.filter((pokemon) => {
+    return pokemon.id !== id;
+  });
 
+  saveStorage();
+  showFavorites();
+}
 
 function saveStorage() {
   localStorage.setItem("pokemon", JSON.stringify(favoritePokemons));
