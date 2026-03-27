@@ -52,13 +52,18 @@ async function getLyrics() {
 }
 
 function copyLyrics() {
-  navigator.clipboard.writeText(currentLyrics)
-   Swal.fire({
+  if (!currentLyrics) {
+    Swal.fire("Nenhuma letra disponível para copiar.");
+    return;
+  }
+
+  navigator.clipboard.writeText(currentLyrics);
+  Swal.fire({
     title: "Copiado!",
     text: "Letra copiada para área de transferência",
     icon: "success",
     timer: 1500,
-    showConfirmButton: false
+    showConfirmButton: false,
   });
 }
 
